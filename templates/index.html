@@ -45,12 +45,9 @@
             $('#frmBusqueda').submit((e) => {
                 e.preventDefault();
 
-                // Obtenemos el valor del campo de texto
-                let titulo = $('#titulo').val();
+                const titulo = $('#titulo').val();
 
-                console.log(titulo);
-
-                $.post('/buscar', { title: titulo }, function (response) {
+                $.post('/buscar', { title: titulo }, (response) => {
                     console.log(response);
                 });
             });
