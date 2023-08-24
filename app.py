@@ -13,7 +13,9 @@ def buscar():
     titulo = request.form.get('title')
 
     datos = {
-        'titulo': titulo
+        'status': 'ok',
+        'titulo': titulo,
+        'id': 1,
     }
     
     return jsonify(datos)
