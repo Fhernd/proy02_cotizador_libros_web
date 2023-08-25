@@ -31,3 +31,16 @@ def crear_driver():
     """
     driver = webdriver.Firefox()
     return driver
+
+
+def buscar_busca_libre_libreria(driver):
+    """
+    Busca en la libreria Busca Libre.
+
+    Returns:
+        driver: driver de selenium.
+    """
+    driver.get('https://www.buscalibre.com.co/')
+    
+    # Retornar el contenido HTML:
+    return driver.page_source
