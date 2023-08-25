@@ -64,15 +64,59 @@ def buscar_busca_libre_libreria(driver, titulo):
     if no_encontrado:
         return []
 
-    # Busque los elementos span que tengan la clase 'pagnLink':
-    paginadores = driver.find_elements(By.CSS_SELECTOR, 'span.pagnLink')
-
     libros = []
 
     # Realizar la búsqueda con este selector CSS "div.box-producto":
-    divs = driver.find_elements(By.CSS_SELECTOR, 'div.box-producto')
+    libros_encontrados = driver.find_elements(By.CSS_SELECTOR, 'div.box-producto')
 
-    for div in divs:
-        libros.append(extraer_datos_libro_busca_libre(div))
+    for libro in libros_encontrados:
+        libros.append(extraer_datos_libro_busca_libre(libro))
+
+    paginadores = driver.find_elements(By.CSS_SELECTOR, 'span.pagnLink')
+
+    if len(paginadores):
+        for i, p in enumerate(paginadores):
+            if i == len(paginadores) - 1:
+                titulo_modificado = titulo.replace(' ', '+').lower()
+                url = f'https://www.buscalibre.com.co/libros/search?q={titulo_modificado}&page={i + 2}'
+
+                driver.get(url)
+
+                time.sleep(5)
+
+                libros_encontrados = driver.find_elements(By.CSS_SELECTOR, 'div.box-producto')
+
+                for libro in libros_encontrados:
+                    libros.append(extraer_datos_libro_busca_libre(libro))
     
     return libros
+
+
+def extraer_datos_libro_busca_libre(libro):
+    # Extraer el valor del atribut "src" de la primera etiqueta img:
+    img = libro.find_element(By.TAG_NAME, 'img')
+    src = img.get_attribute('src')
+
+    # Extraer el texto de este selector CSS 'h3.nombre':
+    nombre = libro.find_element(By.CSS_SELECTOR, 'h3.nombre')
+    nombre = nombre.text
+
+    # Extraer el texto del selector div.autor:
+    autor = libro.find_element(By.CSS_SELECTOR, 'div.autor')
+    autor = autor.text
+
+    # Extraer el texto del div con clases 'autor color-dark-gray metas hide-on-hover':
+    otros_datos = libro.find_element(By.CSS_SELECTOR, 'div.autor.color-dark-gray.metas.hide-on-hover')
+    otros_datos = otros_datos.text
+
+    # Extraer el texto del elemento p con clases 'precio-ahora hide-on-hover margin-0 font-size-medium':
+    precio = libro.find_element(By.CSS_SELECTOR, 'p.precio-ahora.hide-on-hover.margin-0.font-size-medium')
+    precio = precio.text
+
+    return {
+        'src': src,
+        'nombre': nombre,
+        'autor': autor,
+        'otros_datos': otros_datos,
+        'precio': precio
+    }
