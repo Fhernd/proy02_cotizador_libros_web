@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, render_template, request
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
 
 app = Flask(__name__)
 
@@ -35,7 +37,7 @@ def crear_driver():
     return driver
 
 
-def buscar_busca_libre_libreria(driver):
+def buscar_busca_libre_libreria(driver, titulo):
     """
     Busca en la libreria Busca Libre.
 
@@ -43,6 +45,12 @@ def buscar_busca_libre_libreria(driver):
         driver: driver de selenium.
     """
     driver.get('https://www.buscalibre.com.co/')
+
+    # Encuentre el input con name 'q' y escriba el titulo:
+    q = driver.find_element_by_name('q')
+    q.send_keys(titulo)
+
+    # Presione la tecla Enter:
+    q.send_keys(Keys.ENTER)
     
-    # Retornar el contenido HTML:
     return driver.page_source
