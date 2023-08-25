@@ -13,10 +13,12 @@ def index():
 def buscar():
     titulo = request.form.get('title')
 
+    driver = crear_driver()
+
     datos = {
         'status': 'ok',
         'titulo': titulo,
-        'id': 1,
+        'busca-libre': buscar_busca_libre_libreria(driver)
     }
     
     return jsonify(datos)
