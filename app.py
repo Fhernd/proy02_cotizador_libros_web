@@ -76,18 +76,17 @@ def buscar_busca_libre_libreria(driver, titulo):
 
     if len(paginadores):
         for i, p in enumerate(paginadores):
-            if i == len(paginadores) - 1:
-                titulo_modificado = titulo.replace(' ', '+').lower()
-                url = f'https://www.buscalibre.com.co/libros/search?q={titulo_modificado}&page={i + 2}'
+            titulo_modificado = titulo.replace(' ', '+').lower()
+            url = f'https://www.buscalibre.com.co/libros/search?q={titulo_modificado}&page={i + 2}'
 
-                driver.get(url)
+            driver.get(url)
 
-                time.sleep(5)
+            time.sleep(5)
 
-                libros_encontrados = driver.find_elements(By.CSS_SELECTOR, 'div.box-producto')
+            libros_encontrados = driver.find_elements(By.CSS_SELECTOR, 'div.box-producto')
 
-                for libro in libros_encontrados:
-                    libros.append(extraer_datos_libro_busca_libre(libro))
+            for libro in libros_encontrados:
+                libros.append(extraer_datos_libro_busca_libre(libro))
     
     return libros
 
@@ -110,8 +109,11 @@ def extraer_datos_libro_busca_libre(libro):
     otros_datos = otros_datos.text
 
     # Extraer el texto del elemento p con clases 'precio-ahora hide-on-hover margin-0 font-size-medium':
-    precio = libro.find_element(By.CSS_SELECTOR, 'p.precio-ahora.hide-on-hover.margin-0.font-size-medium')
-    precio = precio.text
+    try:
+        precio = libro.find_element(By.CSS_SELECTOR, 'p.precio-ahora.hide-on-hover.margin-0.font-size-medium')
+        precio = precio.text
+    except:
+        precio = -1
 
     return {
         'src': src,
