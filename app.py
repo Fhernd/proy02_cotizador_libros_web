@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, render_template, request
+from selenium import webdriver
 
 app = Flask(__name__)
 
@@ -19,3 +20,14 @@ def buscar():
     }
     
     return jsonify(datos)
+
+
+def crear_driver():
+    """
+    Crea el driver de selenium.
+
+    Returns:
+        driver: driver de selenium.
+    """
+    driver = webdriver.Firefox()
+    return driver
