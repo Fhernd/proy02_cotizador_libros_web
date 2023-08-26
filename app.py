@@ -119,6 +119,6 @@ def extraer_datos_libro_busca_libre(libro):
         'src': src,
         'nombre': nombre,
         'autor': autor,
-        'otros_datos': otros_datos,
+        'otrosDatos': otros_datos,
         'precio': precio
     }
