@@ -92,6 +92,10 @@ def buscar_busca_libre_libreria(driver, titulo):
 
 
 def extraer_datos_libro_busca_libre(libro):
+    # Recuperar el valor del atributo "href" de la primera etiqueta a:
+    a = libro.find_element(By.TAG_NAME, 'a')
+    url = a.get_attribute('href')
+    
     # Extraer el valor del atribut "src" de la primera etiqueta img:
     img = libro.find_element(By.TAG_NAME, 'img')
     src = img.get_attribute('src')
@@ -116,6 +120,7 @@ def extraer_datos_libro_busca_libre(libro):
         precio = -1
 
     return {
+        'url': url,
         'imagen': src if src else 'https://statics.cdn1.buscalibre.com/no_image/ni9.__RS180x180__.jpg',
         'nombre': nombre,
         'autor': autor,
