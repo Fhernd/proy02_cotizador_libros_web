@@ -116,7 +116,7 @@ def extraer_datos_libro_busca_libre(libro):
         precio = -1
 
     return {
-        'src': src,
+        'imagen': src,
         'nombre': nombre,
         'autor': autor,
         'otrosDatos': otros_datos,
