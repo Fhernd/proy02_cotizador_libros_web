@@ -116,7 +116,7 @@ def extraer_datos_libro_busca_libre(libro):
         precio = -1
 
     return {
-        'imagen': src,
+        'imagen': src if src else 'https://statics.cdn1.buscalibre.com/no_image/ni9.__RS180x180__.jpg',
         'nombre': nombre,
         'autor': autor,
         'otrosDatos': otros_datos,
