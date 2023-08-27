@@ -75,20 +75,40 @@
 
                 const titulo = $('#titulo').val();
 
-                $("#divTabBuscaLibre").LoadingOverlay("show");
+                /*$("#divTabBuscaLibre").LoadingOverlay("show");
 
                 $.post('/buscar', { title: titulo, libreria: 'buscaLibre' }, (response) => {
                     $("#divTabBuscaLibre").LoadingOverlay("hide");
                     
-                    let librosBuscaLibre = response.buscaLibre;
+                    let libros = response.resultados;
 
-                    if (librosBuscaLibre.length) {
-                        for (const libro of librosBuscaLibre) {
+                    if (libros.length) {
+                        for (const libro of libros) {
                             const libroHtml = generarLibroTarjetaHtml(libro);
 
                             $('#divTabBuscaLibre').append(libroHtml);
                         }
                     }
+                });
+                */
+
+                $("#divTabLibreriaNacional").LoadingOverlay("show");
+
+                $.post('/buscar', { title: titulo, libreria: 'libreriaNacional' }, (response) => {
+                    $("#divTabLibreriaNacional").LoadingOverlay("hide");
+                    
+                    let libros = response.resultados;
+
+                    console.log(libros);
+
+                    /*if (libros.length) {
+                        for (const libro of libros) {
+                            const libroHtml = generarLibroTarjetaHtml(libro);
+
+                            $('#divTabLibreriaNacional').append(libroHtml);
+                        }
+                    }
+                    */
                 });
             });
         });
