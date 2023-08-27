@@ -17,13 +17,16 @@ def index():
 def buscar():
     titulo = request.form.get('title')
     libreria = request.args.get('libreria', default=None)  # Valor por defecto None si no se envía el parámetro.
+    print('Libreria:', libreria)
 
     driver = crear_driver()
 
-    resultado_busqueda = None
+    resultado_busqueda = []
+    
     if libreria == "buscaLibre":
         resultado_busqueda = buscar_busca_libre_libreria(driver, titulo)
     elif libreria == "libreriaNacional":
+        print('Buscando en libreria nacional')
         resultado_busqueda = buscar_libreria_nacional(driver, titulo)
 
     datos = {
@@ -137,8 +140,20 @@ def extraer_datos_libro_busca_libre(libro):
     
 
 def buscar_libreria_nacional(driver, titulo):
-    # Ubicar el segundo elemento input que tiene como placeholder 'Buscar…':
-    q = driver.find_elements(By.TAG_NAME, 'input')[1]
+    url = 'https://librerianacional.com/'
+    
+    driver.get(url)
+    
+    # Esperar 5 segundos:
+    time.sleep(5)
+    
+    # Pulsar 13 veces la tecla TAB:
+    for i in range(13):
+        driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.TAB)
+    
+    # Encontrar el elemento input con las clases "form-control form-search ng-pristine ng-invalid ng-touched":
+    q = driver.find_element(By.CSS_SELECTOR, 'input.form-control.form-search.ng-pristine.ng-invalid.ng-touched')
+    print('q2:', q)
     
     # Escribir el titulo en el input:
     q.send_keys(titulo)
@@ -150,4 +165,3 @@ def buscar_libreria_nacional(driver, titulo):
     time.sleep(5)
     
     return []
-
