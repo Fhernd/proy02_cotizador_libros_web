@@ -201,4 +201,4 @@ def buscar_libreria_nacional(driver, titulo):
         'precio': precio
         })
     
-    return [libros]
+    return libros
