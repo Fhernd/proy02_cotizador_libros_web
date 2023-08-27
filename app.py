@@ -169,6 +169,10 @@ def buscar_libreria_nacional(driver, titulo):
     libros = []
     
     for libro in libros_encontrados:
+        # Del elemento 'figure' encontrar el primer elemento 'a' y extraer el valor del atributo 'href':
+        a = libro.find_element(By.TAG_NAME, 'a')
+        url = a.get_attribute('href')
+        
         # Encontrar la primera etiqueta img y extraer el valor del atributo "src":
         img = libro.find_element(By.TAG_NAME, 'img')
         img = img.get_attribute('src')
@@ -194,7 +198,7 @@ def buscar_libreria_nacional(driver, titulo):
         )
         
         libros.append({
-        'url': 'pendiente',
+        'url': url,
         'imagen': img if img else 'https://statics.cdn1.buscalibre.com/no_image/ni9.__RS180x180__.jpg',
         'nombre': nombre,
         'autor': autor,
