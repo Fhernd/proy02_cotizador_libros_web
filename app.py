@@ -23,7 +23,8 @@ def buscar():
     resultado_busqueda = None
     if libreria == "buscaLibre":
         resultado_busqueda = buscar_busca_libre_libreria(driver, titulo)
-    # Puedes agregar más condiciones si tienes otras librerías a buscar.
+    elif libreria == "libreriaNacional":
+        resultado_busqueda = buscar_libreria_nacional(driver, titulo)
 
     datos = {
         'status': 'ok',
@@ -133,3 +134,20 @@ def extraer_datos_libro_busca_libre(libro):
         'otrosDatos': otros_datos,
         'precio': precio
     }
+    
+
+def buscar_libreria_nacional(driver, titulo):
+    # Ubicar el segundo elemento input que tiene como placeholder 'Buscar…':
+    q = driver.find_elements(By.TAG_NAME, 'input')[1]
+    
+    # Escribir el titulo en el input:
+    q.send_keys(titulo)
+    
+    # Presionar la tecla Enter:
+    q.send_keys(Keys.ENTER)
+    
+    # Esperar 5 segundos:
+    time.sleep(5)
+    
+    return []
+
