@@ -75,7 +75,7 @@
 
                 $("#divTabBuscaLibre").LoadingOverlay("show");
 
-                $.post('/buscar', { title: titulo }, (response) => {
+                $.post('/buscar', { title: titulo, libreria: 'buscaLibre' }, (response) => {
                     $("#divTabBuscaLibre").LoadingOverlay("hide");
                     
                     let librosBuscaLibre = response.buscaLibre;
