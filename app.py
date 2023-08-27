@@ -163,4 +163,35 @@ def buscar_libreria_nacional(driver, titulo):
     # Esperar 5 segundos:
     time.sleep(5)
     
-    return []
+    # Encontrar todos los elementos div con las clases "row mx-0 mx-sm-2 mx-md-3":
+    libros_encontrados = driver.find_elements(By.CSS_SELECTOR, 'div.row.mx-0.mx-sm-2.mx-md-3')
+    
+    libros = []
+    
+    for libro in libros_encontrados:
+        # Encontrar la primera etiqueta img y extraer el valor del atributo "src":
+        img = libro.find_element(By.TAG_NAME, 'img')
+        img = img.get_attribute('src')
+        
+        # Extraer el nombre del libro desde la etiqueta a con clases "book-title":
+        nombre = libro.find_element(By.CSS_SELECTOR, 'a.book-title')
+        nombre = nombre.text
+        
+        # Encontrar con esta expresion XPath "//div[starts-with(text(), 'Autor: ')]":
+        autor = libro.find_element(By.XPATH, "//div[starts-with(text(), 'Autor: ')]")
+        
+        autor = autor.text.replace('Autor: ', '')
+        
+        # Encuentre el span con la clase "text--bold":
+        precio = libro.find_element(By.CSS_SELECTOR, 'span.text--bold')
+        precio = precio.text
+        
+        libros.append({
+        'url': url,
+        'imagen': img if img else 'https://statics.cdn1.buscalibre.com/no_image/ni9.__RS180x180__.jpg',
+        'nombre': nombre,
+        'autor': autor,
+        'precio': precio
+        })
+    
+    return [libros_encontrados]

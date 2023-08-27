@@ -96,6 +96,7 @@
 
                 $.post('/buscar?libreria=libreriaNacional', {title: titulo}, (response) => {
                     $("#divTabLibreriaNacional").LoadingOverlay("hide");
+                    console.log(response);
                     
                     let libros = response.resultados;
 
