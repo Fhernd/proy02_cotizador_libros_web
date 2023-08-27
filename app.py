@@ -152,8 +152,7 @@ def buscar_libreria_nacional(driver, titulo):
         driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.TAB)
     
     # Encontrar el elemento input con las clases "form-control form-search ng-pristine ng-invalid ng-touched":
-    q = driver.find_element(By.CSS_SELECTOR, 'input.form-control.form-search.ng-pristine.ng-invalid.ng-touched')
-    print('q2:', q)
+    q = driver.switch_to.active_element
     
     # Escribir el titulo en el input:
     q.send_keys(titulo)
