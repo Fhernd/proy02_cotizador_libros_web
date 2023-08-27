@@ -16,13 +16,19 @@ def index():
 @app.route('/buscar', methods=['POST'])
 def buscar():
     titulo = request.form.get('title')
+    libreria = request.args.get('libreria', default=None)  # Valor por defecto None si no se envía el parámetro.
 
     driver = crear_driver()
+
+    resultado_busqueda = None
+    if libreria == "buscaLibre":
+        resultado_busqueda = buscar_busca_libre_libreria(driver, titulo)
+    # Puedes agregar más condiciones si tienes otras librerías a buscar.
 
     datos = {
         'status': 'ok',
         'titulo': titulo,
-        'buscaLibre': buscar_busca_libre_libreria(driver, titulo)
+        'resultado': resultado_busqueda
     }
     
     return jsonify(datos)
