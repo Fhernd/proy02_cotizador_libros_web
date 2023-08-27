@@ -186,12 +186,19 @@ def buscar_libreria_nacional(driver, titulo):
         precio = libro.find_element(By.CSS_SELECTOR, 'span.text--bold')
         precio = precio.text
         
+        print(
+            'img:', img,
+            'nombre:', nombre,
+            'autor:', autor,
+            'precio:', precio
+        )
+        
         libros.append({
-        'url': url,
+        'url': 'pendiente',
         'imagen': img if img else 'https://statics.cdn1.buscalibre.com/no_image/ni9.__RS180x180__.jpg',
         'nombre': nombre,
         'autor': autor,
         'precio': precio
         })
     
-    return [libros_encontrados]
+    return [libros]
