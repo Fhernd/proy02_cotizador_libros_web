@@ -26,8 +26,8 @@ def buscar():
     if libreria == "buscaLibre":
         resultado_busqueda = buscar_busca_libre_libreria(driver, titulo)
     elif libreria == "libreriaNacional":
-        print('Buscando en libreria nacional')
         resultado_busqueda = buscar_libreria_nacional(driver, titulo)
+        print('Resultado busqueda:', resultado_busqueda)
 
     datos = {
         'status': 'ok',
@@ -202,7 +202,8 @@ def buscar_libreria_nacional(driver, titulo):
         'imagen': img if img else 'https://statics.cdn1.buscalibre.com/no_image/ni9.__RS180x180__.jpg',
         'nombre': nombre,
         'autor': autor,
-        'precio': precio
+        'precio': precio,
+        'otrosDatos': ''
         })
     
     return libros

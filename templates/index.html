@@ -97,19 +97,17 @@
                 $.post('/buscar?libreria=libreriaNacional', {title: titulo}, (response) => {
                     $("#divTabLibreriaNacional").LoadingOverlay("hide");
                     console.log(response);
-                    
-                    let libros = response.resultados;
+                    const libros = response.resultados;
 
                     console.log(libros);
 
-                    /*if (libros.length) {
+                    if (libros.length) {
                         for (const libro of libros) {
                             const libroHtml = generarLibroTarjetaHtml(libro);
 
                             $('#divTabLibreriaNacional').append(libroHtml);
                         }
                     }
-                    */
                 });
             });
         });
