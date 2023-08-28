@@ -81,6 +81,7 @@
 
                 $.post('/buscar', { title: titulo, libreria: 'buscaLibre' }, (response) => {
                     $("#divTabBuscaLibre").LoadingOverlay("hide");
+                    mostrarMensaje('success', 'La búsqueda sobre BUSCA LIBRE ha terminado satisfactoriamente.');
                     
                     let libros = response.resultados;
 
@@ -90,6 +91,8 @@
 
                             $('#divTabBuscaLibre').append(libroHtml);
                         }
+                    } else {
+                        mostrarMensaje('warning', 'La búsqueda sobre BUSCA LIBRE ha terminado pero no hay resultados.');
                     }
                 });
                 
@@ -98,6 +101,8 @@
 
                 $.post('/buscar?libreria=libreriaNacional', {title: titulo}, (response) => {
                     $("#divTabLibreriaNacional").LoadingOverlay("hide");
+                    mostrarMensaje('success', 'La búsqueda sobre LIBRERÍA NACIONAL ha terminado pero no hay resultados.');
+
                     const libros = response.resultado;
 
                     if (libros.length) {
