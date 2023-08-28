@@ -75,7 +75,7 @@
 
                 const titulo = $('#titulo').val();
 
-                /*$("#divTabBuscaLibre").LoadingOverlay("show");
+                $("#divTabBuscaLibre").LoadingOverlay("show");
 
                 $.post('/buscar', { title: titulo, libreria: 'buscaLibre' }, (response) => {
                     $("#divTabBuscaLibre").LoadingOverlay("hide");
@@ -90,15 +90,13 @@
                         }
                     }
                 });
-                */
+                
 
                 $("#divTabLibreriaNacional").LoadingOverlay("show");
 
                 $.post('/buscar?libreria=libreriaNacional', {title: titulo}, (response) => {
                     $("#divTabLibreriaNacional").LoadingOverlay("hide");
                     const libros = response.resultado;
-
-                    console.log(libros);
 
                     if (libros.length) {
                         for (const libro of libros) {
