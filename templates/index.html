@@ -79,7 +79,7 @@
 
                 $("#divTabBuscaLibre").LoadingOverlay("show");
 
-                $.post('/buscar', { title: titulo, libreria: 'buscaLibre' }, (response) => {
+                $.post('/buscar?libreria=buscaLibre', { title: titulo}, (response) => {
                     $("#divTabBuscaLibre").LoadingOverlay("hide");
                     mostrarMensaje('success', 'La búsqueda sobre BUSCA LIBRE ha terminado satisfactoriamente.');
                     
