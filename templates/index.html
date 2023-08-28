@@ -101,7 +101,7 @@
 
                 $.post('/buscar?libreria=libreriaNacional', {title: titulo}, (response) => {
                     $("#divTabLibreriaNacional").LoadingOverlay("hide");
-                    mostrarMensaje('success', 'La búsqueda sobre LIBRERÍA NACIONAL ha terminado pero no hay resultados.');
+                    mostrarMensaje('success', 'La búsqueda sobre LIBRERÍA NACIONAL ha terminado satisfactoriamente.');
 
                     const libros = response.resultado;
 
@@ -111,6 +111,8 @@
 
                             $('#divTabLibreriaNacional').append(libroHtml);
                         }
+                    } else {
+                        mostrarMensaje('warning', 'La búsqueda sobre LIBRERÍA NACIONAL ha terminado pero no hay resultados.');
                     }
                 });
             });
