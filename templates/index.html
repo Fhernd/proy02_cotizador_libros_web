@@ -83,7 +83,7 @@
                     $("#divTabBuscaLibre").LoadingOverlay("hide");
                     mostrarMensaje('success', 'La búsqueda sobre BUSCA LIBRE ha terminado satisfactoriamente.');
                     
-                    let libros = response.resultados;
+                    let libros = response.resultado;
 
                     if (libros.length) {
                         for (const libro of libros) {
