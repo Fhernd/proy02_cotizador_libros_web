@@ -226,3 +226,5 @@ def buscar_libreria_lerner(driver, titulo):
     
     # Presionar la tecla Enter:
     q.send_keys(Keys.ENTER)
+
+    return ['libro1', 'libro2', 'libro3']
