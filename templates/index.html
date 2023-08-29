@@ -39,6 +39,10 @@
                                 <a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tabLibreriaNacional" role="tab"
                                     aria-controls="tab2" aria-selected="false">Librería Nacional</a>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="tab3-tab" data-bs-toggle="tab" href="#tabLibreriaLerner" role="tab"
+                                    aria-controls="tab2" aria-selected="false">Librería Lerner</a>
+                            </li>
                         </ul>
 
                         <!-- Contenido de las pestañas -->
@@ -52,6 +56,11 @@
 
                             <div class="tab-pane fade" id="tabLibreriaNacional" role="tabpanel" aria-labelledby="tab2-tab">
                                 <div id="divTabLibreriaNacional" class="row mt-3" style="height: 300px;">
+                                    
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="tabLibreriaNacional" role="tabpanel" aria-labelledby="tab3-tab">
+                                <div id="divTabLibreriaLerner" class="row mt-3" style="height: 300px;">
                                     
                                 </div>
                             </div>
@@ -77,7 +86,7 @@
 
                 const titulo = $('#titulo').val();
 
-                $("#divTabBuscaLibre").LoadingOverlay("show");
+                /*$("#divTabBuscaLibre").LoadingOverlay("show");
 
                 $.post('/buscar?libreria=buscaLibre', { title: titulo}, (response) => {
                     $("#divTabBuscaLibre").LoadingOverlay("hide");
@@ -95,10 +104,29 @@
                         mostrarMensaje('warning', 'La búsqueda sobre BUSCA LIBRE ha terminado pero no hay resultados.');
                     }
                 });
-                
 
                 $("#divTabLibreriaNacional").LoadingOverlay("show");
 
+                $.post('/buscar?libreria=libreriaNacional', {title: titulo}, (response) => {
+                    $("#divTabLibreriaNacional").LoadingOverlay("hide");
+                    mostrarMensaje('success', 'La búsqueda sobre LIBRERÍA NACIONAL ha terminado satisfactoriamente.');
+
+                    const libros = response.resultado;
+
+                    if (libros.length) {
+                        for (const libro of libros) {
+                            const libroHtml = generarLibroTarjetaHtml(libro);
+
+                            $('#divTabLibreriaNacional').append(libroHtml);
+                        }
+                    } else {
+                        mostrarMensaje('warning', 'La búsqueda sobre LIBRERÍA NACIONAL ha terminado pero no hay resultados.');
+                    }
+                });
+                */
+
+                $("#divTabLibreriaNacional").LoadingOverlay("show");
+                
                 $.post('/buscar?libreria=libreriaNacional', {title: titulo}, (response) => {
                     $("#divTabLibreriaNacional").LoadingOverlay("hide");
                     mostrarMensaje('success', 'La búsqueda sobre LIBRERÍA NACIONAL ha terminado satisfactoriamente.');
