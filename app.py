@@ -27,7 +27,9 @@ def buscar():
         resultado_busqueda = buscar_busca_libre_libreria(driver, titulo)
     elif libreria == "libreriaNacional":
         resultado_busqueda = buscar_libreria_nacional(driver, titulo)
-        print('Resultado busqueda:', resultado_busqueda)
+    elif libreria == "libreriaLerner":
+        resultado_busqueda = buscar_libreria_lerner(driver, titulo)
+        
 
     datos = {
         'status': 'ok',
@@ -207,3 +209,7 @@ def buscar_libreria_nacional(driver, titulo):
         })
     
     return libros
+
+
+def buscar_libreria_lerner(driver, titulo):
+    pass
