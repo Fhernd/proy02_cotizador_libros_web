@@ -212,4 +212,10 @@ def buscar_libreria_nacional(driver, titulo):
 
 
 def buscar_libreria_lerner(driver, titulo):
-    pass
+    try:
+        # Buscar por el primer div con la clase 'closeFormLernerU':
+        driver.find_element(By.CSS_SELECTOR, 'div.closeFormLernerU').click()
+    except:
+        pass
+    
+    
