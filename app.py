@@ -218,4 +218,11 @@ def buscar_libreria_lerner(driver, titulo):
     except:
         pass
     
+    # Encontrar el input con las clases "fulltext-search-box ui-autocomplete-input":
+    q = driver.find_element(By.CSS_SELECTOR, 'input.fulltext-search-box.ui-autocomplete-input')
     
+    # Escribir el titulo en el input:
+    q.send_keys(titulo)
+    
+    # Presionar la tecla Enter:
+    q.send_keys(Keys.ENTER)
