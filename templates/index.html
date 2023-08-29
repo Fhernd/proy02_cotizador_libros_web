@@ -125,23 +125,27 @@
                 });
                 */
 
-                $("#divTabLibreriaNacional").LoadingOverlay("show");
+                $("#divTabLibreriaLerner").LoadingOverlay("show");
                 
-                $.post('/buscar?libreria=libreriaNacional', {title: titulo}, (response) => {
-                    $("#divTabLibreriaNacional").LoadingOverlay("hide");
-                    mostrarMensaje('success', 'La búsqueda sobre LIBRERÍA NACIONAL ha terminado satisfactoriamente.');
+                $.post('/buscar?libreria=libreriaLerner', {title: titulo}, (response) => {
+                    $("#divTabLibreriaLerner").LoadingOverlay("hide");
+                    mostrarMensaje('success', 'La búsqueda sobre LIBRERÍA LERNER ha terminado satisfactoriamente.');
 
-                    const libros = response.resultado;
+                    console.log(response);
 
+                    // const libros = response.resultado;
+                    
+                    /*
                     if (libros.length) {
                         for (const libro of libros) {
                             const libroHtml = generarLibroTarjetaHtml(libro);
 
-                            $('#divTabLibreriaNacional').append(libroHtml);
+                            $('#divTabLibreriaLerner').append(libroHtml);
                         }
                     } else {
-                        mostrarMensaje('warning', 'La búsqueda sobre LIBRERÍA NACIONAL ha terminado pero no hay resultados.');
+                        mostrarMensaje('warning', 'La búsqueda sobre LIBRERÍA LERNER ha terminado pero no hay resultados.');
                     }
+                    */
                 });
             });
         });
